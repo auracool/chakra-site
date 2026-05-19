@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chakra JSON Editor</title>
+<style>
+  :root{--bg:#08070c;--panel:#15111f;--panel2:#1d172b;--line:#34284c;--gold:#d7b451;--text:#eee3cc;--muted:#a8997b;--bad:#ef6b6b;--good:#70d68a}
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,serif}
+  header{padding:24px 18px;border-bottom:1px solid var(--line);background:#0d0a14;position:sticky;top:0;z-index:5}
+  h1{margin:0 0 8px;font-size:26px;color:var(--gold)} p{margin:0;color:var(--muted);line-height:1.5}
+  main{display:grid;grid-template-columns:340px 1fr;gap:16px;padding:16px;max-width:1400px;margin:0 auto}
+  section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+  input,textarea,select,button{font:inherit} input,textarea,select{width:100%;background:#0d0a14;color:var(--text);border:1px solid var(--line);border-radius:7px;padding:9px}
+  textarea{min-height:68px;resize:vertical} label{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:12px 0 5px}
+  button{background:var(--gold);color:#08070c;border:0;border-radius:7px;padding:9px 12px;cursor:pointer;font-weight:bold} button.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)} button.danger{background:#702727;color:#fff}
+  .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.row button{flex:1}.status{margin-top:10px;font-size:14px;color:var(--muted)}.ok{color:var(--good)}.bad{color:var(--bad)}
+  #list{margin-top:10px;max-height:66vh;overflow:auto;border-top:1px solid var(--line)}.item{padding:10px;border-bottom:1px solid var(--line);cursor:pointer}.item:hover,.item.active{background:var(--panel2)}.name{color:var(--gold);font-weight:bold}.meta{font-size:13px;color:var(--muted)}
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px}.wide{grid-column:1/-1}.hint{font-size:13px;color:var(--muted);line-height:1.5;margin-top:8px}.mini{font-size:12px;color:var(--muted)}
+  @media(max-width:850px){main{grid-template-columns:1fr}.grid{grid-template-columns:1fr}#list{max-height:280px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Chakra JSON Editor</h1>
+  <p>Loads <code>chakra_main.json</code>, edits records in the browser, then downloads a replacement JSON file. Put this file in the same folder as your site and run it through a local server.</p>
+</header>
+<main>
+  <section>
+    <div class="row">
+      <button id="loadBtn">Load chakra_main.json</button>
+      <button class="secondary" id="importBtn">Import file</button>
+      <input id="fileInput" type="file" accept=".json,application/json" hidden>
+    </div>
+    <label for="search">Search</label>
+    <input id="search" type="search" placeholder="Name, tradition, chakra...">
+    <div class="row" style="margin-top:10px">
+      <button class="secondary" id="addBtn">Add new deity</button>
+      <button id="downloadBtn">Download JSON</button>
+    </div>
+    <div id="status" class="status">No JSON loaded yet.</div>
+    <div id="list"></div>
+  </section>
+
+  <section>
+    <div class="row">
+      <button class="secondary" id="saveBtn">Save selected record</button>
+      <button class="danger" id="deleteBtn">Delete selected</button>
+    </div>
+    <p class="hint">Fields match the existing compact JSON keys: <code>n</code> name, <code>tr</code> tradition, <code>ty</code> type, <code>ch</code> chakras, <code>do</code> domain, etc.</p>
+    <form id="form" class="grid" autocomplete="off">
+      <div><label>Name</label><input name="n"></div>
+      <div><label>Tradition</label><input name="tr"></div>
+      <div><label>Type</label><input name="ty"></div>
+      <div><label>Chakras, comma separated</label><input name="ch" placeholder="Root, Sacral"></div>
+      <div class="wide"><label>Domain</label><textarea name="do"></textarea></div>
+      <div class="wide"><label>Attributes / Story</label><textarea name="at"></textarea></div>
+      <div class="wide"><label>Offerings</label><textarea name="of"></textarea></div>
+      <div><label>Animals</label><textarea name="an"></textarea></div>
+      <div><label>Colours</label><textarea name="co"></textarea></div>
+      <div><label>Day / Planet</label><textarea name="dp"></textarea></div>
+      <div><label>Crystals</label><textarea name="cr"></textarea></div>
+      <div><label>Element</label><input name="el"></div>
+      <div><label>Body parts</label><textarea name="bp"></textarea></div>
+      <div class="wide"><label>Affirmation</label><textarea name="af"></textarea></div>
+      <div class="wide"><label>Shadow</label><textarea name="sh"></textarea></div>
+      <div><label>Archetype</label><textarea name="ar"></textarea></div>
+      <div><label>Counterbalance</label><textarea name="cb"></textarea></div>
+      <div><label>Erased?</label><select name="er"><option value="false">false</option><option value="true">true</option></select></div>
+    </form>
+    <details class="wide" style="margin-top:16px">
+      <summary>Advanced: edit raw selected record</summary>
+      <textarea id="raw" style="min-height:240px;font-family:monospace;margin-top:10px"></textarea>
+      <button class="secondary" id="applyRawBtn" style="margin-top:8px">Apply raw JSON to selected record</button>
+    </details>
+  </section>
+</main>
+<script>
+let data = [];
+let selected = -1;
+const keys = ['n','tr','ty','ch','do','at','of','an','co','dp','cr','el','bp','af','sh','ar','cb','er'];
+const $ = s => document.querySelector(s);
+const form = $('#form');
+function setStatus(msg, cls='') { const el=$('#status'); el.className='status '+cls; el.textContent=msg; }
+function blankRecord(){ return {n:'New deity',tr:'',ty:'',ch:[],do:'',at:'',of:'',an:'',co:'',dp:'',cr:'',el:'',bp:'',af:'',sh:'',ar:'',cb:'',er:false}; }
+function normaliseRecord(r){ const out = blankRecord(); keys.forEach(k=>{ if(k in r) out[k]=r[k]; }); if(!Array.isArray(out.ch)) out.ch=String(out.ch||'').split(',').map(x=>x.trim()).filter(Boolean); out.er=!!out.er; return out; }
+function renderList(){
+  const q = $('#search').value.trim().toLowerCase();
+  const list = $('#list'); list.innerHTML='';
+  data.forEach((r,i)=>{
+    const text = [r.n,r.tr,r.ty,(r.ch||[]).join(' '),r.do].join(' ').toLowerCase();
+    if(q && !text.includes(q)) return;
+    const div=document.createElement('div'); div.className='item'+(i===selected?' active':'');
+    div.innerHTML=`<div class="name">${escapeHtml(r.n||'(unnamed)')}</div><div class="meta">${escapeHtml(r.tr||'')} · ${escapeHtml((r.ch||[]).join(', '))}</div>`;
+    div.onclick=()=>selectRecord(i); list.appendChild(div);
+  });
+  setStatus(`${data.length} records loaded${selected>=0 ? ` · editing #${selected+1}` : ''}.`, 'ok');
+}
+function escapeHtml(s){return String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
+function selectRecord(i){ selected=i; const r=data[i]; keys.forEach(k=>{ const el=form.elements[k]; if(!el) return; el.value = Array.isArray(r[k]) ? r[k].join(', ') : String(r[k] ?? ''); }); $('#raw').value=JSON.stringify(r,null,2); renderList(); }
+function readForm(){
+  const r={}; keys.forEach(k=>{ const el=form.elements[k]; if(!el) return; let v=el.value; if(k==='ch') v=v.split(',').map(x=>x.trim()).filter(Boolean); if(k==='er') v=v==='true'; r[k]=v; }); return r;
+}
+async function loadDefault(){
+  try{ const res=await fetch('chakra_main.json',{cache:'no-store'}); if(!res.ok) throw new Error(`${res.status} ${res.statusText}`); const json=await res.json(); loadData(json); }
+  catch(e){ setStatus(`Could not load chakra_main.json. Use Import file, or run with: python3 -m http.server 8000. Error: ${e.message}`, 'bad'); }
+}
+function loadData(json){ if(!Array.isArray(json)) throw new Error('JSON must be an array of records.'); data=json.map(normaliseRecord); selected=data.length?0:-1; if(selected>=0) selectRecord(selected); renderList(); }
+$('#loadBtn').onclick=loadDefault;
+$('#importBtn').onclick=()=>$('#fileInput').click();
+$('#fileInput').onchange=async e=>{ const file=e.target.files[0]; if(!file) return; try{ loadData(JSON.parse(await file.text())); }catch(err){ setStatus(err.message,'bad'); } };
+$('#search').oninput=renderList;
+$('#addBtn').onclick=()=>{ data.unshift(blankRecord()); selectRecord(0); };
+$('#saveBtn').onclick=e=>{ e.preventDefault(); if(selected<0) return setStatus('Select a record first.','bad'); data[selected]=normaliseRecord(readForm()); selectRecord(selected); setStatus('Selected record saved in memory. Download JSON to keep it.','ok'); };
+$('#deleteBtn').onclick=e=>{ e.preventDefault(); if(selected<0) return; if(!confirm(`Delete ${data[selected].n || 'selected record'}?`)) return; data.splice(selected,1); selected=Math.min(selected,data.length-1); if(selected>=0) selectRecord(selected); else renderList(); };
+$('#applyRawBtn').onclick=e=>{ e.preventDefault(); if(selected<0) return; try{ data[selected]=normaliseRecord(JSON.parse($('#raw').value)); selectRecord(selected); setStatus('Raw JSON applied. Download JSON to keep it.','ok'); }catch(err){ setStatus(`Raw JSON error: ${err.message}`,'bad'); } };
+$('#downloadBtn').onclick=()=>{
+  if(!data.length) return setStatus('No data to download.','bad');
+  if(selected>=0) data[selected]=normaliseRecord(readForm());
+  const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='chakra_main.json'; a.click(); URL.revokeObjectURL(a.href);
+  setStatus('Downloaded chakra_main.json. Upload/replace this file on your site.', 'ok');
+};
+loadDefault();
+</script>
+</body>
+</html>
