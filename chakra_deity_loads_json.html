@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chakra Deity Master Chart — All World Traditions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void:#050408; --deep:#0a080f; --surface:#100d18; --card:#16121f;
+  --card-hover:#1e1830; --border:#2a2040; --border-glow:#4a3060;
+  --gold:#c9a227; --gold-lt:#e8c547; --gold-dim:#8a6d19; --amber:#d4851a;
+  --cream:#f0e6cc; --cream-dim:#c8b890; --text:#e8dfc8; --muted:#706858;
+  --root:#c0392b; --root-g:rgba(192,57,43,.22);
+  --sacral:#e07b39; --sacral-g:rgba(224,123,57,.22);
+  --solar:#d4ac0d; --solar-g:rgba(212,172,13,.22);
+  --heart:#27ae60; --heart-g:rgba(39,174,96,.22);
+  --throat:#2980b9; --throat-g:rgba(41,128,185,.22);
+  --eye:#6c3483; --eye-g:rgba(108,52,131,.22);
+  --crown:#9b59b6; --crown-g:rgba(155,89,182,.22);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--text);font-family:\'Cormorant Garamond\',Georgia,serif;min-height:100vh;overflow-x:hidden}
+body::before{content:\'\';position:fixed;inset:0;background:
+  radial-gradient(ellipse 70% 50% at 15% 15%,rgba(138,90,30,.07) 0%,transparent 70%),
+  radial-gradient(ellipse 60% 40% at 85% 85%,rgba(75,30,100,.09) 0%,transparent 70%),
+  radial-gradient(ellipse 50% 70% at 50% 40%,rgba(15,10,25,.85) 0%,transparent 100%);
+  pointer-events:none;z-index:0}
+
+/* HEADER */
+.hdr{position:relative;z-index:10;text-align:center;padding:52px 24px 36px;
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(5,4,8,.98) 0%,transparent 100%)}
+.hdr-orn{display:flex;align-items:center;justify-content:center;gap:18px;
+  margin-bottom:18px;opacity:.55;font-size:11px;letter-spacing:7px;
+  color:var(--gold-dim);font-family:\'Cinzel\',serif}
+.hdr-orn::before,.hdr-orn::after{content:\'\';height:1px;width:70px;
+  background:linear-gradient(90deg,transparent,var(--gold-dim))}
+.hdr-orn::after{background:linear-gradient(90deg,var(--gold-dim),transparent)}
+.hdr h1{font-family:\'Cinzel Decorative\',serif;font-size:clamp(20px,3.8vw,40px);
+  font-weight:700;color:var(--gold-lt);letter-spacing:3px;line-height:1.2;
+  text-shadow:0 0 40px rgba(201,162,39,.5),0 0 80px rgba(201,162,39,.2);margin-bottom:10px}
+.hdr-sub{font-family:\'Cinzel\',serif;font-size:clamp(9px,1.3vw,12px);
+  color:var(--cream-dim);letter-spacing:4px;margin-bottom:16px}
+.hdr-note{font-size:14px;font-style:italic;color:var(--muted);
+  max-width:680px;margin:0 auto;line-height:1.75}
+
+/* STATS */
+.stats{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;
+  padding:14px 24px;background:rgba(18,13,28,.9);
+  border-bottom:1px solid var(--border);position:relative;z-index:10}
+.stat{text-align:center}
+.stat-n{font-family:\'Cinzel\',serif;font-size:22px;font-weight:700;
+  color:var(--gold);display:block}
+.stat-l{font-size:9px;letter-spacing:2.5px;color:var(--muted);font-family:\'Cinzel\',serif}
+
+/* CONTROLS */
+.ctrl{position:sticky;top:0;z-index:100;background:rgba(5,4,8,.97);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:14px 20px}
+.sr{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.sw{position:relative;flex:1}
+.si{position:absolute;left:12px;top:50%;transform:translateY(-50%);
+  color:var(--gold-dim);font-size:15px;pointer-events:none}
+input[type=search]{width:100%;background:var(--card);border:1px solid var(--border);
+  border-radius:5px;padding:9px 12px 9px 36px;color:var(--cream);
+  font-family:\'Cormorant Garamond\',serif;font-size:15px;outline:none;transition:border .2s}
+input[type=search]:focus{border-color:var(--gold-dim)}
+input[type=search]::placeholder{color:var(--muted)}
+.rc{font-family:\'Cinzel\',serif;font-size:10px;color:var(--muted);white-space:nowrap;letter-spacing:1px}
+.fr{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:7px}
+.fl{font-family:\'Cinzel\',serif;font-size:8px;letter-spacing:2px;color:var(--muted);margin-right:3px;white-space:nowrap}
+.fb{background:transparent;border:1px solid var(--border);border-radius:4px;
+  padding:5px 11px;font-family:\'Cinzel\',serif;font-size:9px;letter-spacing:1px;
+  color:var(--muted);cursor:pointer;transition:all .15s;white-space:nowrap}
+.fb:hover{border-color:var(--gold-dim);color:var(--cream-dim)}
+.fb.active{background:var(--gold);border-color:var(--gold);color:var(--void);font-weight:700}
+.fb[data-v="Root"].active{background:var(--root);border-color:var(--root);color:#fff}
+.fb[data-v="Sacral"].active{background:var(--sacral);border-color:var(--sacral);color:#fff}
+.fb[data-v="Solar Plexus"].active{background:var(--solar);border-color:var(--solar);color:#111}
+.fb[data-v="Heart"].active{background:var(--heart);border-color:var(--heart);color:#fff}
+.fb[data-v="Throat"].active{background:var(--throat);border-color:var(--throat);color:#fff}
+.fb[data-v="Third Eye"].active{background:var(--eye);border-color:var(--eye);color:#fff}
+.fb[data-v="Crown"].active{background:var(--crown);border-color:var(--crown);color:#fff}
+
+/* TABLE */
+.tw{position:relative;z-index:5;padding:20px;overflow-x:auto}
+table{width:100%;border-collapse:separate;border-spacing:0 5px;min-width:1100px}
+thead th{background:var(--surface);font-family:\'Cinzel\',serif;font-size:8px;
+  letter-spacing:2px;color:var(--gold-dim);padding:11px 13px;text-align:left;
+  border-bottom:1px solid var(--border);cursor:pointer;user-select:none;
+  white-space:nowrap;top:0}
+thead th:hover{color:var(--gold)}
+thead th .sa{margin-left:3px;opacity:.45}
+thead th.sorted .sa{opacity:1;color:var(--gold-lt)}
+.dr{background:var(--card);border-radius:5px;cursor:pointer;transition:background .15s,box-shadow .2s}
+.dr:hover{background:var(--card-hover);box-shadow:0 2px 18px rgba(201,162,39,.07)}
+.dr td{padding:11px 13px;vertical-align:middle;font-size:13px;
+  border-top:1px solid transparent;border-bottom:1px solid transparent}
+.dr td:first-child{border-left:3px solid transparent;border-radius:5px 0 0 5px}
+.dr td:last-child{border-radius:0 5px 5px 0}
+.dr[data-p="Root"] td:first-child{border-left-color:var(--root)}
+.dr[data-p="Sacral"] td:first-child{border-left-color:var(--sacral)}
+.dr[data-p="Solar Plexus"] td:first-child{border-left-color:var(--solar)}
+.dr[data-p="Heart"] td:first-child{border-left-color:var(--heart)}
+.dr[data-p="Throat"] td:first-child{border-left-color:var(--throat)}
+.dr[data-p="Third Eye"] td:first-child{border-left-color:var(--eye)}
+.dr[data-p="Crown"] td:first-child{border-left-color:var(--crown)}
+.nc{font-family:\'Cinzel\',serif;font-size:12px;font-weight:600;
+  color:var(--gold-lt);min-width:150px}
+.tc{color:var(--cream-dim);font-size:11px;min-width:160px}
+.yc{font-size:10px;font-style:italic;color:var(--muted);min-width:90px}
+.pills{display:flex;gap:3px;flex-wrap:wrap;min-width:155px}
+.pill{font-family:\'Cinzel\',serif;font-size:7px;letter-spacing:1px;
+  padding:2px 6px;border-radius:3px;white-space:nowrap;font-weight:700}
+.pR{background:var(--root-g);color:#e05040;border:1px solid rgba(192,57,43,.4)}
+.pS{background:var(--sacral-g);color:#e89050;border:1px solid rgba(224,123,57,.4)}
+.pSo{background:var(--solar-g);color:#d4c030;border:1px solid rgba(212,172,13,.4)}
+.pH{background:var(--heart-g);color:#40c070;border:1px solid rgba(39,174,96,.4)}
+.pT{background:var(--throat-g);color:#5090d0;border:1px solid rgba(41,128,185,.4)}
+.pE{background:var(--eye-g);color:#9050b0;border:1px solid rgba(108,52,131,.4)}
+.pC{background:var(--crown-g);color:#b070d0;border:1px solid rgba(155,89,182,.4)}
+.dc{font-size:12px;color:var(--cream-dim);max-width:200px;line-height:1.4}
+.cc{font-size:11px;color:#a070c0;max-width:240px;line-height:1.4;font-style:italic}
+.eb{background:transparent;border:1px solid var(--border);border-radius:3px;
+  color:var(--gold-dim);padding:3px 9px;font-size:13px;cursor:pointer;
+  transition:all .15s;font-family:\'Cormorant Garamond\',serif}
+.eb:hover{border-color:var(--gold-dim);color:var(--gold)}
+.eb.open{color:var(--gold);border-color:var(--gold-dim)}
+.erased-b{display:inline-block;font-family:\'Cinzel\',serif;font-size:6px;
+  letter-spacing:2px;color:#e0a040;border:1px solid rgba(224,160,64,.5);
+  border-radius:2px;padding:1px 5px;margin-left:6px;vertical-align:middle;
+  background:rgba(224,160,64,.08)}
+
+/* DETAIL ROW */
+.detail-row{display:none}
+.detail-row.open{display:table-row}
+.dtd{background:rgba(12,8,20,.95);padding:0;
+  border-radius:0 0 7px 7px;border:1px solid var(--border-glow);border-top:none}
+.din{padding:20px 24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.ds{padding:13px 15px;background:var(--card);border-radius:5px;
+  border-left:2px solid var(--border-glow)}
+.ds.fw{grid-column:1/-1;border-left-color:var(--gold-dim)}
+.ds.cb{grid-column:1/-1;border-left-color:#7040b0;background:rgba(55,25,85,.3)}
+.ds.sh{border-left-color:var(--root);background:rgba(50,10,10,.35)}
+.ds.ar{border-left-color:var(--gold);background:rgba(30,22,5,.35)}
+.dl{font-family:\'Cinzel\',serif;font-size:8px;letter-spacing:2px;
+  color:var(--gold-dim);margin-bottom:7px;display:block}
+.dl.cbl{color:#9060c0}
+.dt{font-size:13px;line-height:1.78;color:var(--cream)}
+.dt.cbt{color:#c090e0;font-style:italic}
+.dt.sht{color:#e08070}
+.dt.art{color:var(--gold);font-family:\'Cinzel\',serif;font-size:11px;letter-spacing:1px}
+.nr{text-align:center;padding:70px 24px;color:var(--muted);font-size:17px;
+  font-style:italic;display:none;position:relative;z-index:5}
+.ft{position:relative;z-index:5;border-top:1px solid var(--border);
+  padding:28px 24px;text-align:center;color:var(--muted);font-size:13px;
+  font-style:italic;line-height:1.85}
+.ft-t{font-family:\'Cinzel\',serif;font-size:10px;letter-spacing:3px;
+  color:var(--gold-dim);display:block;margin-bottom:8px}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:var(--void)}
+::-webkit-scrollbar-thumb{background:var(--border-glow);border-radius:3px}
+@media(max-width:768px){.hdr{padding:28px 14px 20px}.tw{padding:10px}.ctrl{padding:10px 14px}}
+</style>
+<style>
+.tag-water,.tag-nature,.tag-twin{font-size:11px;margin-left:3px;opacity:.75}
+.aff-btn{background:transparent;border:none;color:var(--gold-dim);font-size:15px;cursor:pointer;padding:0 3px;line-height:1;vertical-align:middle}
+.aff-btn:hover,.aff-active{color:#e74c3c!important}
+.xc{white-space:nowrap;text-align:center}
+.ritual-box{background:rgba(26,140,94,.08);border-left-color:#1A8C5E!important}
+.journal-box{background:rgba(139,105,20,.08);border-left-color:var(--gold-dim)!important}
+#daily-panel{background:rgba(27,58,107,.2);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:10px 0;max-width:500px}
+.daily-header{font-size:10px;letter-spacing:2px;color:var(--gold-dim);margin-bottom:5px;text-transform:uppercase}
+.daily-name{font-size:20px;font-weight:bold;color:var(--cream);font-family:"Cinzel Decorative",serif;margin-bottom:2px}
+.daily-trad{font-size:11px;color:var(--gold-dim);font-style:italic;margin-bottom:6px}
+.daily-chakra{font-size:10px;font-weight:bold;letter-spacing:2px;margin-bottom:6px}
+.daily-domain{font-size:12px;color:var(--text-dim);margin-bottom:8px;line-height:1.5}
+.daily-ritual{font-size:11px;color:#2ECC71;background:rgba(26,140,94,.1);border-radius:4px;padding:7px 10px;margin-bottom:7px;line-height:1.5}
+.daily-prompt{font-size:11px;color:var(--gold-lt);background:rgba(139,105,20,.1);border-radius:4px;padding:7px 10px;margin-bottom:9px;line-height:1.5}
+.daily-expand{background:transparent;border:1px solid var(--gold-dim);color:var(--gold);padding:5px 12px;border-radius:4px;cursor:pointer;font-size:11px;font-family:"Cormorant Garamond",serif}
+.daily-expand:hover{background:rgba(201,162,39,.12)}
+#aff-panel{background:rgba(27,58,107,.2);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:10px 0;min-width:240px}
+.aff-item{display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.aff-name{font-size:12px;color:var(--cream);flex:1}
+.aff-trad{font-size:10px;color:var(--gold-dim);font-style:italic}
+.aff-remove{background:transparent;border:none;color:var(--text-dim);font-size:14px;cursor:pointer;padding:0 3px}
+.aff-remove:hover{color:#e74c3c}
+.panel-btn{background:rgba(27,58,107,.35);border:1px solid var(--border);color:var(--gold-dim);padding:5px 13px;border-radius:20px;cursor:pointer;font-size:11px;margin:0 5px 7px 0;font-family:"Cormorant Garamond",serif;transition:all .15s}
+.panel-btn:hover{border-color:var(--gold-dim);color:var(--gold)}
+.panels-row{padding:6px 20px 0;display:flex;flex-wrap:wrap}
+.panels-content{padding:0 20px;display:flex;gap:18px;flex-wrap:wrap}
+.fb[data-f="water"].active{background:#1A4A6B!important;border-color:#2980B9!important}
+.fb[data-f="nature"].active{background:#1A4A2A!important;border-color:#27AE60!important}
+.fb[data-f="twin"].active{background:#3A1A6B!important;border-color:#8E44AD!important}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-orn">SACRED KNOWLEDGE RESTORED</div>
+  <h1>Chakra Deity Master Chart</h1>
+  <p class="hdr-sub">ALL TRADITIONS &nbsp;·&nbsp; ALL PANTHEONS &nbsp;·&nbsp; THE COMPLETE COSMIC POLARITY MAP</p>
+  <p class="hdr-note">
+    An encyclopaedic reference honouring the Gods, Goddesses, Orishas, Lwa, Archangels, Bodhisattvas
+    and Sacred Spirits of every world tradition — including those erased, forgotten and suppressed across millennia.
+    <strong style="color:var(--gold-dim)">We resurrect their names. We restore their power. We reconnect.</strong>
+  </p>
+</header>
+
+<div class="stats">
+  <div class="stat"><span class="stat-n" id="sTotal">612</span><span class="stat-l">DEITIES</span></div>
+  <div class="stat"><span class="stat-n" id="sShown">108</span><span class="stat-l">SHOWN</span></div>
+  <div class="stat"><span class="stat-n">7</span><span class="stat-l">CHAKRAS</span></div>
+  <div class="stat"><span class="stat-n" id="sTrad">—</span><span class="stat-l">TRADITIONS</span></div>
+  <div class="stat"><span class="stat-n" id="sErased">—</span><span class="stat-l">RESTORED</span></div>
+</div>
+
+<div class="ctrl">
+  <div class="sr">
+    <div class="sw">
+      <span class="si">⌕</span>
+      <input type="search" id="q" placeholder="Search name, tradition, domain, offerings, crystals, affirmations, counterbalance…">
+    </div>
+    <span class="rc" id="rc"></span>
+  </div>
+  <div class="fr">
+    <span class="fl">CHAKRA</span>
+    <button class="fb active" data-f="chakra" data-v="ALL">ALL</button>
+    <button class="fb" data-f="chakra" data-v="Root">🔴 ROOT</button>
+    <button class="fb" data-f="chakra" data-v="Sacral">🟠 SACRAL</button>
+    <button class="fb" data-f="chakra" data-v="Solar Plexus">🟡 SOLAR PLEXUS</button>
+    <button class="fb" data-f="chakra" data-v="Heart">💚 HEART</button>
+    <button class="fb" data-f="chakra" data-v="Throat">🔵 THROAT</button>
+    <button class="fb" data-f="chakra" data-v="Third Eye">🟣 THIRD EYE</button>
+    <button class="fb" data-f="chakra" data-v="Crown">⚪ CROWN</button>
+  </div>
+  <div class="fr">
+    <span class="fl">TYPE</span>
+    <button class="fb active" data-f="type" data-v="ALL">ALL</button>
+    <button class="fb" data-f="type" data-v="Goddess">GODDESS</button>
+    <button class="fb" data-f="type" data-v="God">GOD</button>
+    <button class="fb" data-f="type" data-v="Orisha">ORISHA</button>
+    <button class="fb" data-f="type" data-v="Lwa">LWA</button>
+    <button class="fb" data-f="type" data-v="Archangel">ARCHANGEL</button>
+    <button class="fb" data-f="type" data-v="Bodhisattva">BODHISATTVA</button>
+    <button class="fb" data-f="type" data-v="Supreme">SUPREME BEING</button>
+  </div>
+  <div class="fr">
+    <span class="fl">TRADITION</span>
+    <button class="fb active" data-f="trad" data-v="ALL">ALL</button>
+    <button class="fb" data-f="trad" data-v="African">AFRICAN</button>
+    <button class="fb" data-f="trad" data-v="Hindu">HINDU</button>
+    <button class="fb" data-f="trad" data-v="Egyptian">EGYPTIAN</button>
+    <button class="fb" data-f="trad" data-v="Greek">GREEK / ROMAN</button>
+    <button class="fb" data-f="trad" data-v="Norse">NORSE</button>
+    <button class="fb" data-f="trad" data-v="Celtic">CELTIC</button>
+    <button class="fb" data-f="trad" data-v="Mayan|Aztec|Inca|Andean">MESOAMERICAN</button>
+    <button class="fb" data-f="trad" data-v="Sumerian|Babylonian">MESOPOTAMIAN</button>
+    <button class="fb" data-f="trad" data-v="Buddhist">BUDDHIST</button>
+    <button class="fb" data-f="trad" data-v="Vodou|Candomblé">VODOU / CANDOMBLÉ</button>
+    <button class="fb" data-f="trad" data-v="Judeo|Abrahamic|Jewish">ABRAHAMIC</button>
+    <button class="fb" data-f="trad" data-v="Aboriginal|Dogon|Navajo">INDIGENOUS</button>
+    <button class="fb" data-f="erased" data-v="YES">&#9889; ERASED / RESTORED</button>
+    <button class="fb" data-f="twin"   data-v="YES">&#9802; SACRED TWINS</button>
+    <button class="fb" data-f="water"  data-v="YES">&#127754; WATER SPIRITS / MERMAIDS</button>
+    <button class="fb" data-f="nature" data-v="YES">&#127807; NATURE SPIRITS / FAIRIES</button>
+  </div>
+</div>
+
+<div class="panels-row"><button class="panel-btn" id="daily-toggle">&#9733; Daily Deity</button><button class="panel-btn" id="aff-toggle">&#9829; My Deities</button></div><div class="panels-content"><div id="daily-panel" style="display:none"></div><div id="aff-panel" style="display:none"><div id="aff-list"></div></div></div><div class="tw">
+  <table>
+    <thead>
+      <tr>
+        <th data-sort="n">NAME <span class="sa">↕</span></th>
+        <th data-sort="tr">TRADITION <span class="sa">↕</span></th>
+        <th data-sort="ty">TYPE <span class="sa">↕</span></th>
+        <th data-sort="ch">CHAKRA(S) <span class="sa">↕</span></th>
+        <th data-sort="do">PRIMARY DOMAIN <span class="sa">↕</span></th>
+        <th data-sort="cb" style="color:#9060c0">⚖ COUNTERBALANCE / NEUTRALISE <span class="sa">↕</span></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="tb"></tbody>
+  </table>
+  <div class="nr" id="nr">No deities found. The cosmos holds more — try broader search terms.</div>
+</div>
+
+<footer class="ft">
+  <span class="ft-t">CHAKRA DEITY MASTER CHART — ALL WORLD TRADITIONS</span>
+  Compiled in honour of all Gods, Goddesses and Sacred Beings across every world tradition,<br>
+  with special reverence for those whose names were erased, suppressed and forgotten across millennia.<br>
+  <em style="color:var(--gold-dim);margin-top:8px;display:block">
+    We resurrect their names. We restore their power. We reconnect.
+  </em>
+</footer>
+
+<script type="text/javascript">
+var RAW=[];
+</script>
+<script type="text/javascript">
+
+document.addEventListener('DOMContentLoaded', function() {
+
+var CC={"Root":"pR","Sacral":"pS","Solar Plexus":"pSo","Heart":"pH","Throat":"pT","Third Eye":"pE","Crown":"pC"};
+var CM={"Root":"Grounding, Safety, Tribe","Sacral":"Creativity, Pleasure, Water","Solar Plexus":"Power, Will, Fire","Heart":"Love, Compassion, Air","Throat":"Truth, Expression, Sound","Third Eye":"Intuition, Vision, Light","Crown":"Divinity, Unity, Ether"};
+var WW=["mermaid", "siren", "mami wata", "yemoja", "yemaya", "oshun", "olokun", "simbi", "lasiren", "la sirene", "mama dlo", "watramama", "iara", "boto", "nommo", "jengu", "miengu", "undine", "rusalka", "selkie", "nixie", "kappa", "naga", "ocean", "sea spirit", "water spirit", "river spirit", "sea goddess", "water goddess", "water god", "nereid", "oceanid", "naiad", "triton", "poseidon", "neptune", "sedna", "atargatis", "dagon", "water deity", "aquatic", "agwe", "mamadjo", "encantado", "water mother", "mother of waters"];
+var NW=["forest spirit", "nature spirit", "fairy", "faery", "little people", "kontombl", "aziza", "yumboe", "diwata", "maria makiling", "caipora", "curupira", "sprite", "elemental", "gnome", "sylph", "dryad", "hamadryad", "wood nymph", "tree spirit", "kodama", "forest guardian", "woodland", "forest deity", "nature deity", "earth spirit", "green man", "silvanus", "aranyani", "menehune", "cernunnos"];
+var TW=["twin", "twins", "ibeji", "dioscuri", "ashvin", "wawilak", "marassa", "marasa", "nummo", "castor", "pollux", "romulus", "remus", "baldr", "freyr", "freyja", "mawu", "fuxi", "nuwa", "raijin", "fujin", "hunahpu", "monster slayer", "masewi", "gluskap", "kuat", "shahar", "gibil", "he he er", "dosou", "dosa", "jarilo", "marzanna", "belobog", "chernobog", "zorya", "lada & lado", "lel & polel", "kresnik", "isis & nephthys", "inanna & utu", "lugalirra", "oxomoco", "nakula", "lakshmana", "yamantaka", "taiwo & kehinde", "divine twins", "sacred double", "twin principle"];
+
+function lsG(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}}
+function lsS(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+var aff=lsG("cdmc_aff",[]);
+var flt={chakra:"ALL",type:"ALL",trad:"ALL",erased:false,twin:false,water:false,nature:false};
+var sKey=null,sDir=1;
+
+function chk(d,ws){
+  var h=((d.n||"")+" "+(d.do||"")+" "+(d.at||"")+" "+(d.ty||"")+" "+(d.tr||"")).toLowerCase();
+  for(var i=0;i<ws.length;i++){if(h.indexOf(ws[i])!==-1)return true;}
+  return false;
+}
+function esc(s){
+  if(!s)return "";
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+function pills(ch){
+  return (ch||[]).map(function(c){
+    return "<span class=\"pill "+(CC[c]||"pR")+"\" title=\""+(CM[c]||c)+"\">"+esc(c)+"</span>";
+  }).join("");
+}
+function ritual(d){
+  var p=[],ch=(d.ch||["Root"])[0];
+  if(d.of){var o=d.of.split(",")[0].replace(/[()]/g,"").trim();if(o)p.push("Offer "+o.toLowerCase());}
+  if(d.cr){var c=d.cr.split(",")[0].trim();if(c)p.push("Hold "+c.toLowerCase()+" in your left hand");}
+  if(d.co){var col=d.co.split(",")[0].trim();if(col)p.push("Light a "+col.toLowerCase()+" candle");}
+  if(d.af){var af=d.af.length>80?d.af.substring(0,80)+"...":d.af;p.push("Speak: &ldquo;"+esc(af)+"&rdquo;");}
+  return p.length?p.join(", then ")+". Rest in "+ch.toLowerCase()+" awareness.":"Breathe into the "+ch+" chakra. Call "+esc(d.n)+" three times.";
+}
+function reflect(d){
+  var ch=(d.ch||["Root"])[0],n=esc(d.n);
+  var m={
+    "Root":"Where do you most need the grounding "+n+" offers?",
+    "Sacral":"What creative energy awaits "+n+"'s blessing?",
+    "Solar Plexus":"What power would "+n+" recognise in you?",
+    "Heart":"Who needs you to channel "+n+"'s love today?",
+    "Throat":"What truth would "+n+" give you voice to speak?",
+    "Third Eye":"What pattern would clarify through "+n+"'s eyes?",
+    "Crown":"How does "+n+" expand what you believe is possible?"
+  };
+  return m[ch]||("How does "+n+"'s domain show up in your daily life?");
+}
+
+function makeRow(d,ri){
+  var nc=esc(d.n)+(d.er?"<span class=\"erased-b\">RESTORED</span>":"");
+  var wt=chk(d,WW)?"<span class=\"tag-water\" title=\"Water Spirit\">&#127754;</span>":"";
+  var nt=chk(d,NW)?"<span class=\"tag-nature\" title=\"Nature Spirit\">&#127807;</span>":"";
+  var tt=chk(d,TW)?"<span class=\"tag-twin\" title=\"Sacred Twin\">&#9802;</span>":"";
+  var cb=d.cb?(d.cb.length>120?esc(d.cb.substring(0,120))+"&hellip;":esc(d.cb)):"";
+  var dd=d.do?(d.do.length>100?esc(d.do.substring(0,100))+"&hellip;":esc(d.do)):"";
+  var loved=aff.indexOf(ri)!==-1;
+  var ht="<button class=\"aff-btn"+(loved?" aff-active":"")+"\" data-ai=\""+ri+"\" title=\""+(loved?"Remove":"Save to My Deities")+"\">&#"+(loved?"9829":"9825")+";</button>";
+  return (
+    "<tr class=\"dr\" data-ri=\""+ri+"\">"
+    +"<td class=\"nc\">"+nc+wt+nt+tt+"</td>"
+    +"<td class=\"tc\">"+esc(d.tr)+"</td>"
+    +"<td class=\"yc\">"+esc(d.ty)+"</td>"
+    +"<td class=\"pills\">"+pills(d.ch)+"</td>"
+    +"<td class=\"dc\">"+dd+"</td>"
+    +"<td class=\"cc\">"+cb+"</td>"
+    +"<td class=\"xc\"><button class=\"eb\" data-ri=\""+ri+"\">+</button>"+ht+"</td>"
+    +"</tr>"
+    +"<tr class=\"detail-row\" id=\"det-"+ri+"\" style=\"display:none\">"
+    +"<td class=\"dtd\" colspan=\"7\"><div class=\"din\">"
+    +"<div class=\"ds fw\"><span class=\"dl\">ATTRIBUTES &amp; POWERS</span><p class=\"dt\">"+esc(d.at)+"</p></div>"
+    +"<div class=\"ds\"><span class=\"dl\">SACRED OFFERINGS &amp; CEREMONIES</span><p class=\"dt\">"+esc(d.of)+"</p></div>"
+    +"<div class=\"ds\"><span class=\"dl\">SACRED ANIMALS</span><p class=\"dt\">"+esc(d.an)+"</p></div>"
+    +"<div class=\"ds\"><span class=\"dl\">SACRED COLOURS</span><p class=\"dt\">"+esc(d.co)+"</p></div>"
+    +"<div class=\"ds\"><span class=\"dl\">DAY &amp; PLANETARY CORRESPONDENCE</span><p class=\"dt\">"+esc(d.dp)+"</p></div>"
+    +"<div class=\"ds\"><span class=\"dl\">GEMSTONES / CRYSTALS</span><p class=\"dt\">"+esc(d.cr)+"</p></div>"
+    +"<div class=\"ds\"><span class=\"dl\">ELEMENTAL ASSOCIATION</span><p class=\"dt\">"+esc(d.el)+"</p></div>"
+    +"<div class=\"ds\"><span class=\"dl\">BODY PARTS GOVERNED</span><p class=\"dt\">"+esc(d.bp)+"</p></div>"
+    +"<div class=\"ds fw\"><span class=\"dl\">AFFIRMATIONS / INVOCATION PHRASES</span>"
+    +"<p class=\"dt\" style=\"font-style:italic;color:var(--gold-lt);font-size:15px\">"+esc(d.af)+"</p></div>"
+    +"<div class=\"ds sh\"><span class=\"dl\">SHADOW ASPECTS</span><p class=\"dt sht\">"+esc(d.sh)+"</p></div>"
+    +"<div class=\"ds ar\"><span class=\"dl\">MODERN ARCHETYPE</span><p class=\"dt art\">"+esc(d.ar)+"</p></div>"
+    +"<div class=\"ds cb\"><span class=\"dl cbl\">&#9878; COUNTERBALANCING / NEUTRALISING DEITY &mdash; COSMIC POLARITY PAIR</span>"
+    +"<p class=\"dt cbt\">"+esc(d.cb)+"</p></div>"
+    +"<div class=\"ds fw ritual-box\"><span class=\"dl\" style=\"color:#1A8C5E\">DAILY RITUAL SUGGESTION</span>"
+    +"<p class=\"dt\" style=\"color:#2ECC71\">"+ritual(d)+"</p></div>"
+    +"<div class=\"ds fw journal-box\"><span class=\"dl\" style=\"color:#8B6914\">REFLECTION PROMPT</span>"
+    +"<p class=\"dt\" style=\"color:var(--gold-lt)\">"+reflect(d)+"</p></div>"
+    +"</div></td></tr>"
+  );
+}
+
+function tradM(tr,v){return v.split("|").some(function(p){return tr.toLowerCase().indexOf(p.toLowerCase())!==-1;});}
+
+function ok(d){
+  var q=(document.getElementById("q").value||"").trim().toLowerCase();
+  if(flt.chakra!=="ALL"&&(d.ch||[]).indexOf(flt.chakra)===-1)return false;
+  if(flt.type!=="ALL"&&d.ty.toLowerCase().indexOf(flt.type.toLowerCase())===-1)return false;
+  if(flt.trad!=="ALL"&&!tradM(d.tr,flt.trad))return false;
+  if(flt.erased&&!d.er)return false;
+  if(flt.twin&&!chk(d,TW))return false;
+  if(flt.water&&!chk(d,WW))return false;
+  if(flt.nature&&!chk(d,NW))return false;
+  if(!q)return true;
+  var f=[d.n,d.tr,d.ty,(d.ch||[]).join(" "),d.do,d.at,d.of,d.an,d.co,d.dp,d.cr,d.el,d.bp,d.af,d.sh,d.ar,d.cb];
+  return f.some(function(x){return x&&String(x).toLowerCase().indexOf(q)!==-1;});
+}
+
+function render(){
+  var tb=document.getElementById("tb");
+  var list=RAW.slice();
+  if(sKey){
+    list.sort(function(a,b){
+      var av=sKey==="ch"?(a[sKey]||[]).join(", "):(a[sKey]||"");
+      var bv=sKey==="ch"?(b[sKey]||[]).join(", "):(b[sKey]||"");
+      return av.localeCompare(bv)*sDir;
+    });
+  }
+  var vis=list.filter(ok);
+  tb.innerHTML=vis.map(function(d){return makeRow(d,RAW.indexOf(d));}).join("");
+  document.getElementById("nr").style.display=vis.length?"none":"block";
+  document.getElementById("rc").textContent=vis.length+" / "+RAW.length;
+  document.getElementById("sShown").textContent=vis.length;
+  document.getElementById("sTotal").textContent=RAW.length;
+  var tr={};
+  RAW.forEach(function(d){tr[d.tr.split(" (")[0].split("/")[0].trim()]=1;});
+  document.getElementById("sTrad").textContent=Object.keys(tr).length;
+  document.getElementById("sErased").textContent=RAW.filter(function(d){return d.er;}).length;
+}
+
+/* ── EXPAND — event delegation, manual parent walk, no closest() ── */
+var tbody = document.getElementById("tb");
+tbody.addEventListener("click", function(e){
+  var t = e.target;
+  for(var i=0; i<5; i++){
+    if(!t || t === tbody) break;
+    /* Expand button */
+    if(t.tagName === "BUTTON" && t.className.indexOf("eb") !== -1){
+      var ri = t.getAttribute("data-ri");
+      var det = document.getElementById("det-"+ri);
+      if(!det) return;
+      var opening = det.style.display === "none";
+      det.style.display = opening ? "table-row" : "none";
+      t.textContent = opening ? "\u2212" : "+";
+      t.className = opening ? "eb open" : "eb";
+      return;
+    }
+    /* Affinity button */
+    if(t.tagName === "BUTTON" && t.className.indexOf("aff-btn") !== -1){
+      var ri = parseInt(t.getAttribute("data-ai"));
+      var pos = aff.indexOf(ri);
+      if(pos === -1){
+        aff.push(ri);
+        t.innerHTML = "&#9829;";
+        t.className = "aff-btn aff-active";
+        t.title = "Remove from My Deities";
+      } else {
+        aff.splice(pos,1);
+        t.innerHTML = "&#9825;";
+        t.className = "aff-btn";
+        t.title = "Save to My Deities";
+      }
+      lsS("cdmc_aff", aff);
+      affPanel();
+      return;
+    }
+    t = t.parentNode;
+  }
+});
+
+/* ── SORT ── */
+document.querySelectorAll("th[data-sort]").forEach(function(th){
+  th.addEventListener("click",function(){
+    var k=this.getAttribute("data-sort");
+    if(sKey===k){sDir*=-1;}else{sKey=k;sDir=1;}
+    render();
+  });
+});
+
+/* ── SEARCH ── */
+var qEl = document.getElementById("q");
+if(qEl) qEl.addEventListener("input", render);
+
+/* ── FILTER BUTTONS ── */
+document.querySelectorAll(".fb").forEach(function(b){
+  b.addEventListener("click",function(){
+    var f=this.getAttribute("data-f");
+    var v=this.getAttribute("data-v");
+    if(!f) return;
+    if(f==="erased"||f==="twin"||f==="water"||f==="nature"){
+      flt[f]=!flt[f];
+      this.className=flt[f]?"fb active":"fb";
+      render();
+      return;
+    }
+    document.querySelectorAll(".fb[data-f=\""+f+"\"]").forEach(function(x){x.className="fb";});
+    this.className="fb active";
+    if(f==="chakra") flt.chakra=v;
+    else if(f==="type") flt.type=(v==="Supreme"?"Supreme Being":v);
+    else if(f==="trad") flt.trad=v;
+    render();
+  });
+});
+
+/* ── DAILY DEITY ── */
+function pickDaily(){
+  var d=new Date();
+  return RAW[(d.getMonth()*31+d.getDate())%RAW.length];
+}
+function showDaily(){
+  var panel=document.getElementById("daily-panel");
+  if(!panel) return;
+  var d=pickDaily(), ch=(d.ch||["Root"])[0];
+  var cc={"Root":"#bf382a","Sacral":"#e67e22","Solar Plexus":"#d4ac0d","Heart":"#27ae60","Throat":"#2980b9","Third Eye":"#8e44ad","Crown":"#9b59b6"};
+  panel.innerHTML=
+    "<div class=\"daily-header\">TODAY'S DEITY</div>"
+    +"<div class=\"daily-name\">"+esc(d.n)+"</div>"
+    +"<div class=\"daily-trad\">"+esc(d.tr)+"</div>"
+    +"<div class=\"daily-chakra\" style=\"color:"+(cc[ch]||"#fff")+"\">"+ch.toUpperCase()+"</div>"
+    +"<p class=\"daily-domain\">"+esc((d.do||"").substring(0,120))+"</p>"
+    +"<div class=\"daily-ritual\"><b>Practice:</b> "+ritual(d)+"</div>"
+    +"<div class=\"daily-prompt\"><b>Reflect:</b> "+reflect(d)+"</div>"
+    +"<button class=\"daily-expand\" onclick=\"openRow("+RAW.indexOf(d)+")\">&#x2193; See Full Entry</button>";
+}
+function openRow(ri){
+  flt={chakra:"ALL",type:"ALL",trad:"ALL",erased:false,twin:false,water:false,nature:false};
+  document.querySelectorAll(".fb").forEach(function(b){b.className="fb";});
+  if(qEl) qEl.value="";
+  render();
+  setTimeout(function(){
+    var det=document.getElementById("det-"+ri);
+    var btns=document.querySelectorAll(".eb");
+    var btn=null;
+    for(var i=0;i<btns.length;i++){
+      if(btns[i].getAttribute("data-ri")===""+ri){btn=btns[i];break;}
+    }
+    if(det&&btn){
+      det.style.display="table-row";
+      btn.textContent="\u2212";
+      btn.className="eb open";
+      det.scrollIntoView({behavior:"smooth",block:"center"});
+    }
+  },200);
+}
+
+/* ── AFFINITY PANEL ── */
+function affPanel(){
+  var list=document.getElementById("aff-list");
+  if(!list) return;
+  if(!aff.length){
+    list.innerHTML="<p style=\"color:var(--text-dim);font-size:12px;padding:6px 0\">Click &#9825; on any deity to save.</p>";
+    return;
+  }
+  list.innerHTML=aff.map(function(i){
+    var d=RAW[i];
+    if(!d) return "";
+    return "<div class=\"aff-item\">"
+      +"<span class=\"aff-name\">"+esc(d.n)+"</span>"
+      +"<span class=\"aff-trad\">"+esc(d.tr.split("(")[0].trim())+"</span>"
+      +"<button class=\"aff-remove\" data-ai=\""+i+"\">&#215;</button>"
+      +"</div>";
+  }).filter(Boolean).join("");
+  list.querySelectorAll(".aff-remove").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var n=parseInt(this.getAttribute("data-ai"));
+      aff.splice(aff.indexOf(n),1);
+      lsS("cdmc_aff",aff);
+      var hb=document.querySelector(".aff-btn[data-ai=\""+n+"\"]");
+      if(hb){hb.innerHTML="&#9825;";hb.className="aff-btn";hb.title="Save to My Deities";}
+      affPanel();
+    });
+  });
+}
+
+/* ── PANEL TOGGLES ── */
+function wireToggle(btnId,panelId,offLabel,onLabel){
+  var b=document.getElementById(btnId);
+  var p=document.getElementById(panelId);
+  if(!b||!p) return;
+  b.addEventListener("click",function(){
+    var isOpen=p.style.display!=="none";
+    p.style.display=isOpen?"none":"";
+    b.innerHTML=isOpen?offLabel:onLabel;
+  });
+}
+wireToggle("daily-toggle","daily-panel","&#9733; Daily Deity","&#9733; Daily Deity &#215;");
+wireToggle("aff-toggle","aff-panel","&#9829; My Deities","&#9829; My Deities &#215;");
+
+/* ── DATA LOADING ── */
+function initApp(){
+  render();
+  showDaily();
+  affPanel();
+}
+
+function showLoadError(msg){
+  var tb=document.getElementById("tb");
+  if(tb){
+    tb.innerHTML = "<tr><td class=\"dtd\" colspan=\"7\"><div class=\"din\"><div class=\"ds fw\"><span class=\"dl\">JSON LOAD ERROR</span><p class=\"dt\">"+esc(msg)+"</p></div></div></td></tr>";
+  }
+  var nr=document.getElementById("nr");
+  if(nr){nr.style.display="none";}
+}
+
+function loadJSONData(){
+  fetch("chakra_main.json", {cache:"no-store"})
+    .then(function(res){
+      if(!res.ok){throw new Error("Could not load chakra_main.json — HTTP "+res.status);}
+      return res.json();
+    })
+    .then(function(data){
+      if(!Array.isArray(data)){throw new Error("chakra_main.json must contain a JSON array.");}
+      RAW = data;
+      initApp();
+    })
+    .catch(function(err){
+      showLoadError(err.message + " Make sure chakra_deity_loads_json.html and chakra_main.json are in the same folder, and open the page through a local web server, not directly as a file.");
+      console.error(err);
+    });
+}
+
+/* ── INIT ── */
+loadJSONData();
+
+}); /* end DOMContentLoaded */
+
+</script>
+</body>
+</html>
